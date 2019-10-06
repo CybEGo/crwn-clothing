@@ -9,20 +9,12 @@ import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage
 import Header from './components/Header/Header';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-const HatsPage = () => {
-  return (
-    <div>
-      <h1>HATS PAGE</h1>
-    </div>
-  );
-};
-
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      currnetUser: null
+      currentUser: null
     };
   }
 
@@ -43,23 +35,23 @@ class App extends React.Component {
           console.log(this.state);
         });
       }
+
       this.setState({ currentUser: userAuth });
     });
   }
 
-  componentWillUnount() {
+  componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
 
   render() {
     return (
       <div>
-        <Header currnetUser={this.state.currnetUser} />
+        <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
           <Route path='/signin' component={SignInAndSignUpPage} />
-          <Route path='/hats' component={HatsPage} />
         </Switch>
       </div>
     );
